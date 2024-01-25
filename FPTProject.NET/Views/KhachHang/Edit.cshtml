@@ -1,0 +1,56 @@
+@model Hotel.Models.KhachHangModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>KhachHangModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="MaKh" class="control-label"></label>
+                <input asp-for="MaKh" class="form-control" />
+                <span asp-validation-for="MaKh" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TenKh" class="control-label"></label>
+                <input asp-for="TenKh" class="form-control" />
+                <span asp-validation-for="TenKh" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HinhAnh" class="control-label"></label>
+                <input asp-for="HinhAnh" class="form-control" />
+                <span asp-validation-for="HinhAnh" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SoDt" class="control-label"></label>
+                <input asp-for="SoDt" class="form-control" />
+                <span asp-validation-for="SoDt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CCcd" class="control-label"></label>
+                <input asp-for="CCcd" class="form-control" />
+                <span asp-validation-for="CCcd" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DiaChi" class="control-label"></label>
+                <input asp-for="DiaChi" class="form-control" />
+                <span asp-validation-for="DiaChi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

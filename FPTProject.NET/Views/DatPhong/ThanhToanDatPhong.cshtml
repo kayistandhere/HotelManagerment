@@ -1,0 +1,294 @@
+@model List<object>
+@{
+    var datPhongModel = Model.ElementAt(0) as DatPhongModel;
+    var listDatDichVu = Model.ElementAt(1) as List<DatDichVuModel>;
+    var listHoaDonDatPhong = Model.ElementAt(2) as List<HoaDonDatPhongModel>;
+    var nhanVien = Model.ElementAt(3) as NhanVienModel;
+    int soGio = 0;
+    int soPhut = 0;
+    int soNgay = 0;
+    if (datPhongModel != null)
+    {
+        soGio = Math.Abs((datPhongModel.NgayKetThuc - datPhongModel.NgayBatDau).Hours);
+        soPhut = Math.Abs((datPhongModel.NgayKetThuc - datPhongModel.NgayBatDau).Minutes);
+        soNgay = Math.Abs((datPhongModel.NgayKetThuc - datPhongModel.NgayBatDau).Days) == 0 ? 1 :
+        Math.Abs((datPhongModel.NgayKetThuc - datPhongModel.NgayBatDau).Days);
+    }
+    decimal tongTienDichVu = 0;
+    string maHoaDon = "HD-";
+    var hoaDon = listHoaDonDatPhong.Where(dp => (datPhongModel == null ? false : dp.MaDp == datPhongModel.MaDp)).FirstOrDefault();
+    int so = 0;
+    if (listHoaDonDatPhong != null && listHoaDonDatPhong.Count != 0)
+    {
+        try
+        {
+            if (hoaDon != null)
+            {
+                maHoaDon = hoaDon.MaHddp;
+            }
+            else
+            {
+                if (listHoaDonDatPhong != null)
+                {
+                    string? ma = listHoaDonDatPhong.LastOrDefault().MaHddp.Trim();
+                    so = Int32.Parse(ma.Split('-')[1].ToString());
+                    int len = so.ToString().Length + 3;
+                    string s = "";
+                    for (int i = 0; i < 10 - len; i++) s += "0";
+                    maHoaDon += s + (so + 1).ToString();
+                }
+            }
+
+        }
+        catch (FormatException ex)
+        {
+            System.Console.WriteLine(ex.Message);
+        }
+    }
+    else
+    {
+        maHoaDon += "0000001";
+    }
+
+    if (listDatDichVu != null && listDatDichVu.Count > 0)
+    {
+        tongTienDichVu =(from datDV in listDatDichVu select datDV).Sum(ddv => ddv.TongTien==null ? 0 : (decimal)ddv.TongTien);
+    }
+}
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/site.js"></script>
+    
+@if (nhanVien != null && datPhongModel != null && listHoaDonDatPhong != null && listDatDichVu != null)
+{
+    <div>
+    <form asp-action="GeneratePDF" id="formPDF">
+        <input id="pdfValue" name="html" hidden>
+        <div class="text-end">
+            <button type="button" class="btn btn-white text-dark border-light border-2"><i class="fa fa-print"></i> Print</button>
+            <button id="btnPdf" type="button" class="btn btn-primary"><i class="fa fa-file-pdf-o"></i>
+                Export as PDF</button>
+        </div>
+    </form>
+
+<form asp-action="ThanhToanDatPhong">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        @if(datPhongModel != null)
+        {
+            <input value="@datPhongModel.Id" name="Id" hidden>
+        }
+        else
+        {
+            <input value="" name="Id" hidden>
+        }
+        <div class="form-group">
+            <input name="MaHddp" value="@maHoaDon" class="form-control" hidden/>
+        </div>
+        <div class="form-group">
+            <input name="NgayHd" value="@DateTime.Now" class="form-control" hidden/>
+        </div>
+        <div class="form-group">
+            @if (nhanVien != null)
+            {
+                <input name="MaNv" value="@nhanVien.MaNv" class="form-control" hidden/>
+            }
+        </div>
+        <div class="form-group">
+            @if (datPhongModel != null)
+            {
+                <input name="MaDp" value="@datPhongModel.MaDp" class="form-control" hidden/>
+            }
+        </div>
+        <div class="col-xl-2">
+            @if (hoaDon != null)
+            {
+                @Html.ActionLink("Quay lui", "Index", "DatPhong", null, new {@class = "btn btn-transperent border-light border-2 text-capitalize"})
+            }
+            else
+            {
+                <button type="submit" class="btn btn-primary text-capitalize"
+                style="background-color:#60bdf3;">Thanh Toán</button>
+            }
+        </div>
+    </form>
+</div>
+
+<div  class="container" style="position: relative;
+            height: auto;
+            width: 100%;
+            font-family: 'Roboto', sans-serif;
+            text-overflow: ellipsis;
+            ">
+    <div class="containerBill" id="pdfContainer" style="position: relative;
+    width: 70%;
+    height: auto;
+    left: 50%;
+    display: grid;
+    background-color: #fff;
+    grid-template-rows: 150px 200px auto 230px;
+    transform: translateX(-50%);">
+        <div class="rowBill1" style="position: relative;
+        display: flex;
+        justify-content: center;
+        border-bottom: 1px solid black;">
+           
+            <div class="informationBill" style="text-align: center;">
+            <div class="titleBill" style="padding: 10px;
+            font-size: 40px;
+            font-weight: 600;">Hóa Đơn Khách Sạn</div>
+            <div class="info">Số 3 - Điện Biên Phủ - Thanh Khê - Đà Nẵng</div>
+            <div class="info">Phone : 09723123142</div>
+            <div class="info">Website : www.baomoi.com</div>
+            </div>
+        </div>
+        
+        <div class="rowBill2" style="display: flex;
+        flex-wrap: wrap;
+        padding: 5px;
+        border-bottom: 1px solid black;">
+            <div class="BillItem" style="width: 48%;
+            height: 30px;
+            margin-top: 5px;
+            margin-left:2%;">Tên : <span>@datPhongModel.MaKhNavigation.TenKh</span></div>
+            <div class="BillItem" style="width: 48%;
+            height: 30px;
+            margin-top: 5px;
+            margin-left:2%;">Số hóa đơn : <span>@maHoaDon</span></div>
+            <div class="BillItem" style="width: 48%;
+            height: 30px;
+            margin-top: 5px;
+            margin-left:2%;">Điện Thoại : <span> @datPhongModel.MaKhNavigation.SoDt</span></div>
+            <div class="BillItem" style="width: 48%;
+            height: 30px;
+            margin-top: 5px;
+            margin-left:2%;">Mã Số Thuế : <span>@datPhongModel.MaPNavigation.MaLpNavigation.TenLp</span></div>
+            <div class="BillItem" style="width: 48%;
+            height: 30px;
+            margin-top: 5px;
+            margin-left:2%;">Phòng : <span>@datPhongModel.MaPNavigation.SoPhong</span></div>
+            <div class="BillItem" style="width: 48%;
+            height: 30px;
+            margin-top: 5px;
+            margin-left:2%;">Ngày HĐ : <span>@DateTime.Now</span></div>
+            <div class="BillItem" style="width: 48%;
+            height: 30px;
+            margin-top: 5px;
+            margin-left:2%;">Ngày Đến : <span>@datPhongModel.NgayBatDau</span></div>
+            <div class="BillItem" style="width: 48%;
+            height: 30px;
+            margin-top: 5px;
+            margin-left:2%;">Thời gian sử dụng : <span>@soNgay Ngày @soGio giờ @soPhut phút</span></div>
+            <div class="BillItem" style="width: 48%;
+            height: 30px;
+            margin-top: 5px;
+            margin-left:2%;">Thu Ngân : <span>@nhanVien.TenNv</span></div>
+            <div class="BillItem" style="width: 48%;
+            height: 30px;
+            margin-top: 5px;
+margin-left:2%;">Thanh Toán : <span>Tiền Mặt</span></div>
+        </div>
+        <div class="rowBill3" style="border-bottom: 1px solid black;">
+              <table style="width:100%">
+                <thead>
+                  <tr>
+                    <th style="padding: 10px;">#</th>
+                    <th style="padding: 10px;">Tên Dịch Vụ</th>
+                    <th style="padding: 10px;">Ngày</th>
+                    <th style="padding: 10px;">Số Lượng</th>
+                    <th style="padding: 10px;">Gía</th>
+                  </tr>
+                </thead>
+                <tbody style="text-align: center;">
+
+                    @{
+                        int soTT = 1;
+                        if (listDatDichVu != null)
+                        {
+                            foreach (var item in listDatDichVu)
+                            {
+                                <tr>
+                                    @if (item.MaDvNavigation != null)
+                                    {
+                                        <td scope="row">@(soTT++)</td>
+                                        <td>@item.MaDvNavigation.TenDv</td>
+                                        <td>@item.NgayDatDichVu</td>
+                                        <td>@item.SoLuong</td>
+                                        <td>@(String.Format( "{0:#,#}", item.TongTien/item.SoLuong))</td>
+                                        <td>@String.Format( "{0:#,#}",item.TongTien)</td>
+                                    }
+                                </tr>
+                            }
+                        }
+                    }
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><hr></td>
+                        <td><hr></td>
+                    </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td style="font-weight: 300; text-align: left;">Tiền Dịch Vụ : </td>
+                    <td style="font-weight: 550; text-align: left;">@(String.Format( "{0:#,#}", tongTienDichVu )) VNĐ</td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td style="font-weight: 300; text-align: left;">Tiền Phòng : </td>
+                    <td style="font-weight: 550; text-align: left;">@(String.Format( "{0:#,#}", datPhongModel.MaPNavigation.MaLpNavigation.DonGia * soNgay)) VNĐ</td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><hr></td>
+                    <td><hr></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td style="font-weight: 600; text-align: left;">Tổng Tiền : </td>
+                    <td style="font-weight: 800; text-align: left;">@(String.Format( "{0:#,#}", tongTienDichVu+datPhongModel.MaPNavigation.MaLpNavigation.DonGia * soNgay)) VNĐ</td>
+                  </tr>        
+                </tbody>
+              </table>
+              
+        </div>
+        <div class="rowBill4">
+            <style>
+                .ChuKy {
+                    position: relative;
+                    left: 50%;
+                    transform: translateX(-50%);
+                }
+                .Ky {
+                    height: 100px;
+                }
+            </style>
+            <span style="font-style: italic;"> * Đã bao gồm thuế VAT</span>
+            <table class="ChuKy" style="width:70%">
+                <tr>
+                    <th style="width:50%">Thu Ngân</th>
+                    <th style="width:50%">Khách</th>
+                </tr>
+                <tr>
+                    <td><div class="Ky"></div></td>
+                    <td><div class="Ky"></div></td>
+                </tr>
+                
+            </table>
+            <p style="text-align: center;">Cảm ơn quý khách và Hẹn gặp lại  !!!</p>
+        </div>
+    </div>
+ </div>
+}
+else
+{
+    @Html.ValidationSummary(false, "", new { @class = "alert-danger"})
+}
+

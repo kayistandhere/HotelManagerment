@@ -1,0 +1,38 @@
+@model IEnumerable<Hotel.Models.DatDichVuModel>;
+
+@{
+    ViewData["Title"] = "Chi tiết dịch vụ";
+}
+@section Title_Content{
+<p class="fs-4 fw-bolder">Danh sách Đặt Dịch Vụ của phòng @ViewBag.SoPhong</p> 
+}
+@section Itemt_Title{
+}
+<div class="row px-4">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Tên Dịch Vụ</th>
+                <th scope="col">Số Lượng</th>
+                <th scope="col">Ngày Đặt Dịch Vụ</th>
+                <th scope="col">Tổng Tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int soTT = 1;
+            }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">@(soTT++)</th>
+                    <td>@item.MaDvNavigation.TenDv</td>
+                    <td>@item.SoLuong</td>
+                    <td>@item.NgayDatDichVu</td>
+                    <td>@(item.SoLuong * item.MaDvNavigation.DonGia)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

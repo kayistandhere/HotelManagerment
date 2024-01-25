@@ -1,0 +1,95 @@
+@model Hotel.Models.PhongModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+@section Title_Content{
+    <h3>Tạo Phòng</h3>
+}
+@section Itemt_Title{
+}
+
+<div class="row">
+    <form asp-action="Create" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row mb-4">
+            <div class="col">
+                <div class="form-group">
+                    <label asp-for="MaP" class="control-label"></label>
+                    <input asp-for="MaP" class="form-control" />
+                    <span asp-validation-for="MaP" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label asp-for="SoPhong" class="control-label"></label>
+                    <input asp-for="SoPhong" class="form-control" />
+                    <span asp-validation-for="SoPhong" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="" class="control-label">Loại Phòng</label>
+                    <select asp-for="MaLp" class="form-control" asp-items="ViewBag.MaLp"></select>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col">
+                <div class="form-group">
+                    <label for="" class="control-label">Tình Trạng Phòng</label>
+                    <select asp-for="MaTvp" class="form-control" asp-items="ViewBag.MaTvp"></select>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="" class="control-label">Trạng Thái</label>
+                    <select name="TrangThaiPhong" class="form-control">
+                        <option value="1">Đang rảnh</option>
+                        <option value="0">Đang bận</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="" class="control-label">Loại Giường</label>
+                    <select name="loaiGiuong" class="form-control">
+                        <option value="true">Giường Đơn</option>
+                        <option value="false">Giường Đôi</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-4">
+            @* <div class="col">
+                <div class="form-group">
+                    <label asp-for="HinhAnh" class="control-label"></label>
+                    
+                    <span asp-validation-for="HinhAnh" class="text-danger"></span>
+                </div>
+            </div> *@
+            <div class="col">
+                <div class="form-group">
+                    <label asp-for="HinhAnh" class="control-label"></label>
+                    <input asp-for="HinhAnh" class="form-control" type="file" hidden/>
+                    <input class="form-control" asp-for="@Model.fileUpload">
+                    <span class="text-danger" asp-validation-for="@Model.fileUpload"></span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label asp-for="MoTa" class="control-label"></label>
+                    <input asp-for="MoTa" class="form-control" />
+                    <span asp-validation-for="MoTa" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group mb-2">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

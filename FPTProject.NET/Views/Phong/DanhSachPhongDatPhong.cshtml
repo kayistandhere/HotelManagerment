@@ -1,0 +1,95 @@
+@model IEnumerable<Hotel.Models.PhongModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<body>
+    @section Title_Content{
+        <div class="titleCreate col d-flex">
+            <h3 class="page-title text-truncate text-dark font-weight-medium mb-0 me-4"
+                style="line-height:34px;">Danh Sách Đặt Phòng</h3>
+        </div>
+    }
+    @section Itemt_Title{
+    }
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                        aria-labelledby="nav-home-tab">
+                        <table class="table table-bordered mt-2">
+                            <thead class="text-center align-middle">
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Hình Ảnh</th>
+                                    <th scope="col">Số Phòng</th>
+                                    <th scope="col">Loại Phòng</th>
+                                    <th scope="col">Loại Giường</th>
+                                    <th scope="col">Trạng Thái</th>
+                                    <th scope="col">Công Cụ</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center align-middle">
+                                @{
+                                    int soTT = 1;
+                                    foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <th scope="row">@(soTT++)</th>
+                                            <td class="container-img-dp">
+                                                <a asp-action="Details" asp-route-id="@item.">
+                                                    <img src="/images/User.jpg" alt="" class="img-dp">
+                                                </a>
+                                            </td>
+                                            <td>@item.SoPhong</td>
+                                            <td>@item.MaLpNavigation.TenLp</td>
+                                            @if (item.LoaiGiuong == true)
+                                            {
+                                                <td>Giường Đơn</td>
+                                            }
+                                            else
+                                            {
+                                                <td>Giường Đôi</td>
+                                            }
+                                            @if
+                                    (item.TrangThaiPhong == 1)
+                                            {
+                                                <td>
+                                                    <div class="badge bg-success text-wrap p-2"
+                                                        style="width: 6rem;">
+                                                        Đang Rảnh
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    @Html.ActionLink("Đặt Phòng", "GetDataPhong", "DatPhong",
+                                        new{idP=@item.Id},new
+                                        {@class = "btn btn-primary"})
+                                                </td>
+                                            }
+                                            else
+                                            {
+                                                <td>
+                                                    <div class="badge bg-warning text-wrap p-2"
+                                                        style="width: 6rem;">
+                                                        Đang Bận
+                                                    </div>
+                                                </td>
+                                                <td></td>
+                                            }
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+
+

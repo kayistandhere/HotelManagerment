@@ -1,0 +1,62 @@
+@using Hotel.Base;
+@{
+    BaseClass bs = new BaseClass();
+    string tenDN = "";
+    int? phanQuyen = null;
+    string? ten = @Context.Request.Cookies["DangNhap"];
+    if (ten != null)
+    {
+        ten = bs.deCodeHash(ten);
+    }
+    string roleName = "";
+    if (ten != null && ten.Contains(";"))
+    {
+        tenDN = ten.Split(";")[0];
+        try
+        {
+            phanQuyen = Int32.Parse(ten.Split(";")[1]);
+            if (phanQuyen == 99)
+                roleName = "Admin";
+            else if (phanQuyen == 1)
+                roleName = "Quản Lý";
+            else if (phanQuyen == 0)
+                roleName = "Nhân viên";
+            else
+                roleName = "Không xác định";
+        }
+        catch (FormatException ex)
+        {
+            System.Console.WriteLine(ex.Message);
+        }
+    }
+}
+@if (phanQuyen != 0)
+{
+<li class="sidebar-item">
+    <a class="sidebar-link" href='@Url.Action("DanhSachPhongDaDat","DatPhong")'
+        aria-expanded="false">
+        <i class="fas fa-home fs-3"></i>
+        <span class="hide-menu">Phòng Đã Đặt</span>
+    </a>
+</li>
+}else{
+<li class="sidebar-item">
+    <a class="sidebar-link has-arrow" href="javascript:void(0)"
+        aria-expanded="false">
+        <i class="fas fa-home fs-3"></i>
+        <span class="hide-menu">Đặt Phòng</span>
+    </a>
+    <ul aria-expanded="false" class="collapse first-level base-level-line">
+        <li class="sidebar-item"><a href='@Url.Action("Index","DatPhong", new{check_nav = 1})'
+                class="sidebar-link"><span
+                    class="hide-menu">Quản Lý Đặt Phòng
+                </span></a>
+        </li>
+        <li class="sidebar-item"><a href='@Url.Action("DanhSachPhongDatPhong","Phong")'
+                class="sidebar-link"><span
+                    class="hide-menu">Danh Sách Đặt Phòng
+                </span></a>
+        </li>
+    </ul>
+</li>
+}

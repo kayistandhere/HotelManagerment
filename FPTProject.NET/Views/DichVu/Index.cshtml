@@ -1,0 +1,50 @@
+@model IEnumerable<Hotel.Models.DichVuModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+@section Title_Content{
+<p class="fs-4 fw-bolder">Quản Lý Dịch Vụ</p>
+}
+@section Itemt_Title{
+    <a asp-action="Create"
+    class="btn btn-dark btn-sm ms-auto text-center"
+    style="height:2.5em ; width:10rem">Tạo Mới</a>
+}
+<div class="row px-4">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Mã Dịch Vụ</th>
+                <th scope="col">Tên Dịch Vụ</th>
+                <th scope="col">Đơn Giá</th>
+                <th scope="col">Số Lượng</th>
+                <th scope="col">Hình Ảnh</th>
+                <th scope="col">Công Cụ</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int soTT = 1;
+            }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">@(soTT++)</th>
+                    <td>@Html.DisplayFor(modelItem => item.MaDv)</td>
+                    <td>@item.TenDv</td>
+                    <td>@item.DonGia</td>
+                    <td>@item.SoLuong</td>
+                    <td>@item.HinhAnh</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Sửa</a>
+                        <a asp-action="Detail" asp-route-id="@item.Id">Xem</a>
+                        <a href="" data-id="@item.Id" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal" class="delete">Xoá</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

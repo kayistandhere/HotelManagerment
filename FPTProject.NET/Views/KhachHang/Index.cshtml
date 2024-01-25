@@ -1,0 +1,176 @@
+@model PaginatedList<Hotel.Models.KhachHangModel>
+
+@{
+    int i = 0;
+}
+
+@section Title_Content{
+    <div class="titleCreate col d-flex">
+        <h3 class="page-title text-truncate text-dark font-weight-medium mb-0 me-4" style="line-height:34px;">Danh Sách Hóa
+            Đơn Đặt Phòng</h3>
+            <a asp-action="Create" class="btn waves-effect waves-light btn-secondary mb-0"
+            style="height:2.5em ; width:10rem">Tạo mới</a>
+    </div>
+}
+@section Itemt_Title{
+    <form asp-action="Index" method="get" id="form-search">
+        <div class="customize-input d-flex">
+            <input placeholder="Tìm kiếm ..." type="text" name="searchString" value='@ViewData["CurrentFilter"]'
+                id="searchInput" class="form-control custom-shadow custom-radius border-1 border-light bg-white me-2" />
+            <div class="d-flex align-items-center">
+                <a asp-action="Index" class="back-search" class="btn waves-effect waves-light btn-primary">Back
+                </a>
+            </div>
+        </div>
+    </form>
+}
+
+<div class="container-fluid">
+    <div class="functionMenuButton mt-2">
+    </div>
+    <table class="table table-border-vertical bg-white">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().MaKh)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().TenKh)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().HinhAnh)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().SoDt)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().CCcd)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().DiaChi)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@(++i)</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaKh)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenKh)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HinhAnh)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SoDt)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CCcd)
+                    </td>
+                    <td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        
+                        @Html.DisplayFor(modelItem => item.DiaChi)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Chỉnh sửa</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Xem</a> |
+                        <a data-id="@item.Id" data-bs-toggle="modal" data-bs-target="#exampleModal" class="Delete-Id">Xóa</a>
+                        <form asp-action="Delete" method="Post">
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <input type="text" name="id" id="Id-KhachHang" />
+                                        </div>
+                                        <div class="modal-footer">
+                                            <input type="submit" value="Delete" class="btn btn-danger" />
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <ul>
+        @{
+            var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+            var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+        }
+        <li class="d-inline">
+            <a asp-action="Index" asp-route-sortOrder='@ViewData["CurrentSort"]'
+                asp-route-pageNumber="@(Model.PageIndex - 1)"
+                asp-route-currentFilter='@ViewData["CurrentFilter"]' class="btn btn-default @prevDisabled">
+                Previous
+            </a>
+        </li>
+        @for (int j = 1; j <= Model.TotalPages; j++)
+        {
+            if (Model.PageIndex == j)
+            {
+                <li class="d-inline">
+                    <a asp-action="Index" asp-route-sortOrder='@ViewData["CurrentSort"]' asp-route-pageNumber="@(j)"
+                asp-route-currentFilter='@ViewData["CurrentFilter"]' class="btn btn-primary @nextDisabled">
+                        @j
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li class="d-inline">
+                    <a asp-action="Index" asp-route-sortOrder='@ViewData["CurrentSort"]' asp-route-pageNumber="@(j)"
+                asp-route-currentFilter='@ViewData["CurrentFilter"]' class="btn btn-default @nextDisabled">
+                        @j
+                    </a>
+                </li>
+            }
+        }
+        <li class="d-inline">
+            <a asp-action="Index" asp-route-sortOrder='@ViewData["CurrentSort"]'
+                asp-route-pageNumber="@(Model.PageIndex + 1)"
+                asp-route-currentFilter='@ViewData["CurrentFilter"]' class="btn btn-default @nextDisabled">
+                Next
+            </a>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,71 @@
+@model Hotel.Models.NhanVienModel;
+@{
+    ViewData["Title"] = "Home Page";
+}
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+<form asp-action="EditProFile" enctype="multipart/form-data">
+    <div class="d-flex justify-content-center" style="color:rbga(63, 72, 87)">
+        <div class="col-10 d-flex flex-column justify-content-center  ">
+            <div class="container rounded bg-white mt-5 shadow p-5 mb-5 bg-body rounded">
+                <div class="row">
+                    <div class="col-md-4 border-right">
+                        <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                            <img class="rounded-circle mt-5"
+                                src='~/Images/NhanVien/@((Model == null || Model.HinhAnh == null) ? "noimage.jpg" : Model.HinhAnh)'
+                                width="190">
+                            <span class="font-weight-bold mt-4 text-dark">@(ViewBag.tenDN == null ? "" :
+                                ViewBag.tenDN)</span>
+                            <span class="text-black-50">@(ViewBag.email == null ? "" : ViewBag.email)</span>
+                            <span>@(Model == null ? "" : Model.SoDt)</span>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="p-3 py-5">
+                            <input value="@ViewBag.maNV" name="MaNv" >
+                            <input value="@ViewBag.tenDN" name="UserName" >
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div class="d-flex flex-row align-items-center back"><i
+                                        class="fa fa-long-arrow-left mr-1 mb-1"></i>
+                                </div>
+                                <h6 class="text-right">Edit Profile</h6>
+                            </div>
+                            <input type="hidden" name="" />
+                            <div class="row mt-2">
+                                <div class="col-md-12"><input type="text" value='@(Model == null ? "" : Model.TenNv)'
+                                        name="TenNv" class="form-control" placeholder="Họ Tên">
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-12 ms-auto"><input name="HinhAnh" type="file"
+                                        class="form-control bg-dark text-light custom-file-input" hidden></div>
+
+                                <div class="col-md-12">
+                                    @* <label asp-for="@Model.fileUpload"></label> *@
+                                    <input class="form-control" asp-for="@Model.fileUpload">
+                                    <span class="text-danger" asp-validation-for="@Model.fileUpload"></span>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-12"><input name="DiaChi" value='@(Model == null ? "" : Model.DiaChi)'
+                                        type="text" class="form-control" placeholder="Address">
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-6"><input name="CCccd" type="text" class="form-control"
+                                        value='@(Model == null ? "" : Model.CCccd)' placeholder="CCCD/CMND"></div>
+                                <div class="col-md-6"><input name="SoDt" type="text" class="form-control"
+                                        value='@(Model == null ? "" : Model.SoDt)' placeholder="Số điện thoại"></div>
+                            </div>
+                            <div class="row mt-5">
+                                <div class="col-md-4"><input type="submit" class="form-control bg-dark text-light"
+                                        value="Cập Nhật"></div>
+                                <div class="col-md-3"><input type="submit" class="form-control" value="Cancel"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

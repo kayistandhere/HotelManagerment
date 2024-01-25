@@ -1,0 +1,492 @@
+@model List<object>
+
+@{
+    ThongKeTheoNamModel thongKeTheoNamModel = new ThongKeTheoNamModel();
+    thongKeTheoNamModel = ViewData["thongKeTheoNamModel"] as ThongKeTheoNamModel;
+    var listYearThanhToan = Model.ElementAt(0) as List<int>;
+    var listThongKeDoanhThuTheoLoaiPhong = Model.ElementAt(1) as List<ThongKeDoanhThuLoaiPhongModel>;
+    var listTopKH = Model.ElementAt(2) as List<KhachHangModel>;
+    var listNV = Model.ElementAt(3) as List<NhanVienModel>;
+    var listSoNgayDatDoanhThu = Model.ElementAt(5) as List<ThongKeSoNgayDatDoanhThuNhanVienModel>;
+    List<string> listTenLP = new List<string>();
+    List<decimal> listTotal = new List<decimal>();
+    foreach (var item in listThongKeDoanhThuTheoLoaiPhong)
+    {
+        listTenLP.Add(item.tenLP);
+        listTotal.Add(item.total.Value);
+    }
+    var list = Model.ElementAt(4) as List<ThongKeDoanhThuTheoThangModel>;
+    for (int i = 1; i <= 12; i++)
+    {
+        if (list.Find(t => t.month == i) == null)
+        {
+            list.Add(new ThongKeDoanhThuTheoThangModel() { month = i, total = 0 });
+        }
+    }
+    var listDoanhThuTheoThang = new List<ThongKeDoanhThuTheoThangModel>();
+    listDoanhThuTheoThang = list.OrderBy(t => t.month).ToList();
+}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    @section Title_Content{
+    <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Xin chào
+                    @ViewBag.TenDangNhap!</h3>
+                <div class="d-flex align-items-center">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb m-0 p-0">
+                            <li class="breadcrumb-item">Thống Kê
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+    }
+    @section Itemt_Title{
+        <div class="row">
+            <div class="col-md-5 col-lg-5"></div>
+            <div class="col-7 align-self-center">
+                <div class="customize-input float-end">
+                    <form asp-action="Index" id="idFormThongKe">
+                        <select
+                            class="custom-select custom-select-set form-control bg-white
+                            border-0 custom-shadow custom-radius"
+                            id="dropdownyear" name="chooseyeardropdown">
+                            @if (listYearThanhToan != null)
+                            {
+                                foreach (var item in listYearThanhToan)
+                                {
+                                    if (item == ViewBag.Year)
+                                    {
+                                        <option value="@item" selected>@item</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item">@item</option>
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                <option value="" aria-readonly="true">Chọn năm</option>
+                            }
+                        </select>
+                    </form>
+                </div>
+            </div>
+        </div>
+    }
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6 col-lg-6">
+            <div class="card border-end">
+                <div class="card-body" style="height:106px">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <div class="d-inline-flex align-items-center">
+                                <h2 class="text-dark mb-1 font-weight-medium">@thongKeTheoNamModel.TongSoKHTrongNam</h2>
+                                <span
+                                    class="badge bg-primary font-12 text-white font-weight-medium
+                                    rounded-pill ms-2 d-lg-block d-md-none">+18.33%</span>
+                            </div>
+                            <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Khách
+                                hàng mới của năm @ViewBag.Year
+                            </h6>
+                        </div>
+                        <div class="ms-auto mt-md-3 mt-lg-0">
+                            <span class="opacity-7 text-muted"><i data-feather="user-plus"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-6">
+            <div class="card border-end ">
+                <div class="card-body" style="height:106px">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <h2 class="text-dark mb-1 w-100 text-truncate font-weight-medium">@String.Format("{0:##,##0}",thongKeTheoNamModel.TongDoanhThuTrongNam)<sup
+                                    class="set-doller">VNĐ</sup></h2>
+                            <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Doanh
+                                thu của năm @ViewBag.Year</h6>
+                        </div>
+                        <div class="ms-auto mt-md-3 mt-lg-0">
+                            <span class="opacity-7 text-muted"><i data-feather="dollar-sign"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-6">
+            <div class="card border-end ">
+                <div class="card-body" style="height:106px">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <div class="d-inline-flex align-items-center">
+                                <h2 class="text-dark mb-1 font-weight-medium">@thongKeTheoNamModel.TongSoPhongTrongNam
+                                </h2>
+                                <span
+                                    class="badge bg-danger font-12 text-white font-weight-medium
+                                    rounded-pill ms-2 d-md-none d-lg-block">-18.33%</span>
+                            </div>
+                            <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Tổng
+                                phòng sử dụng trong
+                                năm @ViewBag.Year
+                            </h6>
+                        </div>
+                        <div class="ms-auto mt-md-3 mt-lg-0">
+                            <span class="opacity-7 text-muted"><i data-feather="file-plus"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-6">
+            <div class="card ">
+                <div class="card-body" style="height:106px">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <h2 class="text-dark mb-1 font-weight-medium">
+                                @thongKeTheoNamModel.TongSoNgayDatDoanhThuTheoNam</h2>
+                            <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Tổng
+                                số ngày đạt doanh
+                                thu của năm @ViewBag.Year</h6>
+                        </div>
+                        <div class="ms-auto mt-md-3 mt-lg-0">
+                            <span class="opacity-7 text-muted"><i data-feather="globe"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-md-12">
+            <div class="card" style="height: 468px;">
+                <div class="card-body">
+                    <h4 class="card-title">Tổng Doanh Thu Theo Loại Phòng</h4>
+                    <canvas id="oilChart" width="800" height="800"></canvas>
+                    <ul class="list-style-none mb-0">
+                        @if (listThongKeDoanhThuTheoLoaiPhong != null)
+                        {
+                            foreach (var item in listThongKeDoanhThuTheoLoaiPhong)
+                            {
+                                if (item.tenLP.Equals("Phòng Đơn"))
+                                {
+                                    <li>
+                                        <i class="fas fa-circle text-primary font-10 me-2"></i>
+                                        <span class="text-muted fs-6">@item.tenLP</span>
+                                        <span class="text-dark float-end font-weight-medium fs-6">$@item.total</span>
+                                    </li>
+                                }
+                                else if (item.tenLP.Equals("Phòng Đôi"))
+                                {
+                                    <li>
+                                        <i class="fas fa-circle text-danger font-10 me-2"></i>
+                                        <span class="text-muted fs-6">@item.tenLP</span>
+                                        <span class="text-dark float-end font-weight-medium fs-6">$@item.total</span>
+                                    </li>
+                                }
+                                else if (item.tenLP.Equals("Phòng Gia Đình"))
+                                {
+                                    <li>
+                                        <i class="fas fa-circle text-cyan font-10 me-2"></i>
+                                        <span class="text-muted fs-6">@item.tenLP</span>
+                                        <span class="text-dark float-end font-weight-medium fs-6">$@item.total</span>
+                                    </li>
+                                }
+                                else if (item.tenLP.Equals("Phòng Vip"))
+                                {
+                                    <li>
+                                        <i class="fas fa-circle text-light font-10 me-2"></i>
+                                        <span class="text-muted fs-6">@item.tenLP</span>
+                                        <span class="text-dark float-end font-weight-medium fs-6">$@item.total</span>
+                                    </li>
+                                }
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-12">
+            <div class="card" style="height: 468px;">
+                <div class="card-body">
+                    <h4 class="card-title">Net Income</h4>
+                    <canvas id="bar-chart" width="800" height="800"></canvas>
+                    <ul class="list-inline text-center mt-5 mb-2">
+                        <li class="list-inline-item text-muted fst-italic">Sales for this month</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-lg-4">
+            <div class="card" style="height: 468px;">
+                <div class="card-body">
+                    <h4 class="card-title">Top khách hàng tiêu biểu của năm @ViewBag.Year</h4>
+                    <div class="mt-4 activity">
+                        @foreach (var item in listTopKH)
+
+                        {
+                            <div class="d-flex align-items-start border-left-line pb-3">
+                                <div>
+                                    <a href="javascript:void(0)" class="btn btn-info btn-circle mb-2
+                                    btn-item">
+                                        <i data-feather="shopping-cart"></i>
+                                    </a>
+                                </div>
+                                <div class="ms-3 mt-2">
+                                    <h5 class="text-dark font-weight-medium mb-2">@item.TenKh</h5>
+                                    <p class="font-14 mb-2 text-muted">John Musa just purchased <br>
+                                        Cannon 5M
+                                        Camera.
+                                    </p>
+                                    <span class="font-weight-light font-14 text-muted">10 Minutes Ago</span>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex align-items-start">
+                        <h4 class="card-title mb-0">Doanh Thu Theo Tháng Của Năm @ViewBag.Year</h4>
+                    </div>
+                    <div class="pl-4 mb-5">
+                        <canvas id="speedChart" width="600" height="400"></canvas>
+                    </div>
+                    <ul class="list-inline text-center mt-4 mb-0">
+                        <li class="list-inline-item text-muted fst-italic"> Doanh thu cho năm
+                            @ViewBag.Year</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-4">
+                        <h4 class="card-title">Top nhân viên tiêu biểu của năm @ViewBag.Year</h4>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table no-wrap v-middle mb-0">
+                            <thead>
+                                <tr class="border-0">
+                                    <th class="border-0 font-14 font-weight-medium text-muted">Nhân
+                                        Viên
+                                    </th>
+                                    <th class="border-0 font-14 font-weight-medium text-muted px-2">Chức
+                                        Vụ
+                                    </th>
+                                    <th class="border-0 font-14 font-weight-medium text-muted">Team</th>
+                                    <th class="border-0 font-14 font-weight-medium text-muted
+                                        text-center">
+                                        Trạng Thái
+                                    </th>
+                                    <th class="border-0 font-14 font-weight-medium text-muted
+                                        text-center">
+                                        Số Ngày Làm
+                                    </th>
+                                    <th class="border-0 font-14 font-weight-medium text-muted">Doanh
+                                        Thu</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in listNV)
+                                {
+                                    <tr>
+                                        <td class="border-top-0 px-2 py-4">
+                                            <div class="d-flex no-block align-items-center">
+                                                <div class="me-3"><img
+                                                        src='./Images/NhanVien/@(item.HinhAnh == null ? "noimage.jpg" : item.HinhAnh)'
+                                                        alt="user" class="rounded-circle" width="45"
+                                                        height="45" /></div>
+                                                <div class="">
+                                                    <h5 class="text-dark mb-0 font-16
+                                                    font-weight-medium">@item.TenNv</h5>
+                                                    <span class="text-muted font-14">@item.Email</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="border-top-0 text-muted px-2 py-4 font-14">
+                                            @item.UserNameNavigation.IdRoleNavigation.RoleName</td>
+                                        <td class="border-top-0 px-2 py-4">
+                                            <div class="popover-icon">
+                                                <a class="btn btn-primary rounded-circle btn-circle
+                                                font-12"
+                                                    href="javascript:void(0)">DS</a>
+                                                <a class="btn btn-danger rounded-circle btn-circle
+                                                font-12 popover-item"
+                                                    href="javascript:void(0)">SS</a>
+                                                <a class="btn btn-cyan rounded-circle btn-circle font-12
+                                                popover-item"
+                                                    href="javascript:void(0)">RP</a>
+                                                <a class="btn btn-success text-white rounded-circle
+                                                btn-circle font-20"
+                                                    href="javascript:void(0)">+</a>
+                                            </div>
+                                        </td>
+                                        <td class="border-top-0 text-center px-2 py-4"><i
+                                                class="fa fa-circle text-primary font-12"
+                                                data-bs-toggle="tooltip"
+                                                data-placement="top" title="In Testing"></i></td>
+                                        <td class="border-top-0 text-center font-weight-medium
+                                        text-muted px-2 py-4">
+                                            @listSoNgayDatDoanhThu.Where(l => l.MaNV ==
+                                        item.MaNv).FirstOrDefault().TongNgay
+                                        </td>
+                                        <td class="font-weight-medium text-dark border-top-0 px-2 py-4">
+                                            $@listSoNgayDatDoanhThu.Where(l => l.MaNV ==
+                                        item.MaNv).FirstOrDefault().Total
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    @* var ctx = document.getElementById("pieChartLP");
+        var myChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+        labels: ['OK', 'WARNING', 'CRITICAL', 'UNKNOWN'],
+        datasets: [{
+        label: '# of Tomatoes',
+        data: [12, 19, 3, 5],
+        backgroundColor: [
+        'rgba(255, 99, 132, 0.5)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)'
+        ],
+        borderColor: [
+        'rgba(255,99,132,1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)'
+        ],
+        borderWidth: 1
+        }]
+        },
+        options: {
+        //cutoutPercentage: 40,
+        responsive: false,
+        }
+        }); *@
+    var oilCanvas = document.getElementById("oilChart");
+    Chart.defaults.font.family = "Lato";
+    Chart.defaults.font.size = 8;
+    Chart.defaults.color = "black";
+    var oilData = {
+        labels: ["Phòng Đơn", "Phòng Đôi", "Phòng Gia Đình", "Phòng Vip"],
+        datasets: [
+            {
+                data: [@listTotal.ElementAt(0), @listTotal.ElementAt(1), @listTotal.ElementAt(2), @listTotal.ElementAt(3)],
+                backgroundColor: ["#5F76E8", "#FF4F70", "#01CAF1", "#E8EAEC"],
+                borderColor: "white",
+                borderWidth: 1
+            }
+        ]
+    };
+    var chartOptions = {
+        rotation: -20,
+        cutout: "65%",
+        plugins: {
+            title: {
+                display: true,
+                position: "bottom",
+                text: "Doanh Thu Theo Loại Phòng (@ViewBag.Year)",
+                font: {
+                    size: 12
+                }
+            },
+            legend: {
+                position: "left",
+                align: "start"
+            }
+        },
+        animation: {
+            animateRotate: false,
+            animateScale: true
+        }
+    };
+    var donutChart = new Chart(oilCanvas, {
+        type: "doughnut",
+        data: oilData,
+        options: chartOptions
+    });
+    const speedCanvas = document.getElementById("speedChart");
+    Chart.defaults.font.family = "Teko";
+    Chart.defaults.font.size = 10;
+    Chart.defaults.color = "black";
+    let speedData = {
+        labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
+        datasets: [{
+            label: "Line",
+            data: [
+    @listDoanhThuTheoThang.ElementAt(0).total.Value,
+    @listDoanhThuTheoThang.ElementAt(1).total.Value,
+    @listDoanhThuTheoThang.ElementAt(2).total.Value,
+    @listDoanhThuTheoThang.ElementAt(3).total.Value,
+    @listDoanhThuTheoThang.ElementAt(4).total.Value,
+    @listDoanhThuTheoThang.ElementAt(5).total.Value,
+    @listDoanhThuTheoThang.ElementAt(6).total.Value,
+    @listDoanhThuTheoThang.ElementAt(7).total.Value,
+    @listDoanhThuTheoThang.ElementAt(8).total.Value,
+    @listDoanhThuTheoThang.ElementAt(9).total.Value,
+    @listDoanhThuTheoThang.ElementAt(10).total.Value,
+    @listDoanhThuTheoThang.ElementAt(11).total.Value
+                ],
+            tension: 0.4,
+            cubicInterpolationMode: 'monotone',
+            fill: false,
+            borderColor: '#24ACF2',
+            backgroundColor: 'transparent',
+            borderDash: [20, 10, 60, 10],
+            pointBorderColor: '#E64A19',
+            pointBackgroundColor: '#FFA726',
+            pointRadius: 5,
+            pointHoverRadius: 10,
+            pointHitRadius: 30,
+            pointBorderWidth: 4,
+            pointStyle: 'rectRounded'
+        }]
+    };
+    let lineChart = new Chart(speedCanvas, {
+        type: 'line',
+        data: speedData
+    });
+    new Chart(document.getElementById("bar-chart"), {
+    type: 'bar',
+    data: {
+      labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+      datasets: [
+        {
+          label: "Population (millions)",
+          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+          data: [2478,5267,734,784,433]
+        }
+      ]
+    },
+    options: {
+      legend: { display: false },
+      title: {
+        display: true,
+        text: 'Predicted world population (millions) in 2050'
+      }
+    }
+});
+
+</script>
+
+

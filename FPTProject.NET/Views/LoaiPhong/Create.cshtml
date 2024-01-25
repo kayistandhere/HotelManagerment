@@ -1,0 +1,43 @@
+@model Hotel.Models.LoaiPhongModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+@section Title_Content{
+    <h2>Create</h2>
+    <h4>Loaiphong</h4>
+}
+@section Itemt_Title{
+}
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MaLp" class="control-label"></label>
+                <input asp-for="MaLp" class="form-control" />
+                <span asp-validation-for="MaLp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TenLp" class="control-label"></label>
+                <input asp-for="TenLp" class="form-control" />
+                <span asp-validation-for="TenLp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DonGia" class="control-label"></label>
+                <input asp-for="DonGia" class="form-control" />
+                <span asp-validation-for="DonGia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

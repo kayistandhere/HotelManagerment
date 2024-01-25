@@ -1,0 +1,151 @@
+@model PaginatedList<Hotel.Models.PhongModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<body>
+    @section Title_Content{
+        <div class="titleCreate col d-flex">
+            <h3 class="page-title text-truncate text-dark font-weight-medium mb-0 me-4" style="line-height:34px;">Quản Lý
+                Phòng</h3>
+            <a asp-action="Create" class="btn waves-effect waves-light btn-secondary mb-0"
+                style="height:2.5em ; width:10rem">Tạo Phòng</a>
+        </div>
+    }
+    @section Itemt_Title{
+        <form asp-action="Index" method="get" id="form-search">
+            <div class="customize-input d-flex">
+                <input type="text" name="SearchString" value='@ViewData["CurrentFilter"]' id="searchInput"
+                    class="form-control custom-shadow custom-radius border-0 bg-white me-2" />
+                <div class="d-flex align-items-center">
+                    <a asp-action="Index" class="back-search" class="btn waves-effect waves-light btn-primary">Back
+                    </a>
+                </div>
+            </div>
+        </form>
+    }
+    <div class="row">
+        <div class="col">
+            <table class="table table-borderbg-light">
+                <thead>
+                    <tr>
+                        <th scope="col">
+                            @Html.DisplayNameFor(model
+                            =>
+                            model.FirstOrDefault().MaP)
+
+                        </th>
+                        <th scope="col">
+                            @Html.DisplayNameFor(model
+                            =>
+                            model.FirstOrDefault().SoPhong)
+                        </th>
+                        <th scope="col">
+                            @Html.DisplayNameFor(model
+                            =>
+                            model.FirstOrDefault().HinhAnh)
+                        </th>
+                        <th scope="col">
+                            @Html.DisplayNameFor(model
+                            =>
+                            model.FirstOrDefault().TrangThaiPhong)
+                        </th>
+                        <th scope="col">
+                            Loại Phòng
+                        </th>
+                        <th scope="col">
+                            Tình Trạng
+                        </th>
+                        <th scope="col">
+                            @Html.DisplayNameFor(model
+                            =>
+                            model.FirstOrDefault().MoTa)
+                        </th>
+                        <th>
+                            Công Cụ
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem
+                            => item.MaP)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem
+                            => item.SoPhong)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem
+                            => item.HinhAnh)
+                            </td>
+                            <td>
+                                @if
+                               (item.TrangThaiPhong == 1)
+                                {
+                                    <div class="badge bg-success p-2 text-wrap" style="width: 6rem;">
+                                        Đang Rảnh
+                                    </div>
+                                <td>Bình Thường</td>
+                                }
+                                else
+                                {
+                                <div class="badge bg-warning p-2 text-wrap" style="width: 6rem;">
+                                    Đang Bận
+                                </div>
+                                <td>
+                                        @Html.DisplayFor(modelItem
+                            => item.MaTvpNavigation.TenTvp)
+                                </td>
+                                }
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem
+                            => item.MaLpNavigation.TenLp)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem
+                            => item.MoTa)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-edit"></i></a>
+                                |
+                                <a asp-action="Details" asp-route-id="@item.Id"><i class="fas fa-eye"></i></a>
+                                |
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#danger-header-modal" data-id="@item.Id"
+                                    class="delete"><i class="fas fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <!-- Modal -->
+        </div>
+    </div>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <br />
+            @{
+                var prevDisabled = !Model.HasPreviousPage ?
+                "disabled" : "";
+                var nextDisabled = !Model.HasNextPage ?
+                "disabled" : "";
+            }
+            <a asp-action="Index" asp-route-sortOrder='@ViewData["CurrentSort"]'
+                asp-route-pageNumber="@(Model.PageIndex - 1)" asp-route-currentFilter='@ViewData["CurrentFilter"]'
+                class="btn btn-default @prevDisabled">
+                Previous
+            </a>
+
+            <a asp-action="Index" asp-route-sortOrder='@ViewData["CurrentSort"]'
+                asp-route-pageNumber="@(Model.PageIndex + 1)" asp-route-currentFilter='@ViewData["CurrentFilter"]'
+                class="btn btn-default @nextDisabled">
+                Next
+            </a>
+        </div>
+    </div>
+</body>

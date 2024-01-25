@@ -1,0 +1,72 @@
+@model IEnumerable<Hotel.Models.DatPhongModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<body>
+    @section Title_Content{
+    }
+    @section Itemt_Title{
+    }
+    <div class="row">
+        <div class="col">
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-home"
+                    role="tabpanel" aria-labelledby="nav-home-tab">
+                    <table class="table table-bordered mt-2">
+                        <thead class="text-center align-middle">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Mã Đặt Phòng</th>
+                                <th scope="col">Số Phòng</th>
+                                <th scope="col">Loại Giường</th>
+                                <th scope="col">Thời Gian Đặt</th>
+                                <th scope="col">Thời Gian Hết</th>
+                                <th scope="col">Tổng Tiền</th>
+                                <th scope="col">Công Cụ</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center align-middle">
+                            @{
+                                int soTT = 1;
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <th scope="row">@(soTT++)</th>
+                                        <td>
+                                            @Html.ActionLink(@item.MaDp,
+                                    "ChiTietDichVuCuaDatPhong",
+                                    "DatDichVu",
+                                    new {@maDp = item.MaDp}, new {@class =
+                                    ""})
+                                        </td>
+                                        <td>@item.MaPNavigation.SoPhong</td>
+                                        @if (item.MaPNavigation.LoaiGiuong == true)
+                                        {
+                                            <td>Giường Đơn</td>
+                                        }
+                                        else
+                                        {
+                                            <td>Giường Đôi</td>
+                                        }
+                                        <td>@item.NgayBatDau.ToString("dd/MM/yyyy HH:mm")</td>
+                                        <td>@item.NgayKetThuc.ToString("dd/MM/yyyy HH:mm")</td>
+                                        <td>@String.Format( "{0:#,#}", item.TongTien) VNĐ</td>
+                                        <td>
+                                            @Html.ActionLink("Xem",
+                                    "ThanhToanDatPhong",
+                                    "DatPhong",
+                                    new {@idDP = item.Id}, new {@class =
+                                    "btn btn-outline-primary"})
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

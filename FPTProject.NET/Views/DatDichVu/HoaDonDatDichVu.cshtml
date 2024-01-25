@@ -1,0 +1,50 @@
+@model IEnumerable<Hotel.Models.DatDichVuModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+@section Title_Content{
+    <p class="fs-4 fw-bolder">Quản Lý Danh Sách Đặt Dịch Vụ</p>        
+
+}
+@section Itemt_Title{
+    @Html.ActionLink("Đặt Dịch Vụ","Index","DatPhong", null, new {@class = "btn btn-dark btn-sm ms-auto text-center", @style="height:2.5em ; width:8rem"})
+}
+<div class="row px-4">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Mã Đặt Dịch Vụ</th>
+                <th scope="col">Mã Đặt Phòng</th>
+                <th scope="col">Số Phòng</th>
+                <th scope="col">Tên Dịch Vụ</th>
+                <th scope="col">Số Lượng</th>
+                <th scope="col">Tổng Tiền</th>
+                <th scope="col">Ngày Đặt Dịch Vụ</th>
+                <th scope="col">Ngày Thanh Toán</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int soTT = 1;
+            }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">@(soTT++)</th>
+                    <td>
+                        @item.MaDv
+                    </td>
+                    <td>@item.MaDpNavigation.MaDp</td>
+                    <td>@item.MaDpNavigation.MaPNavigation.SoPhong</td>
+                    <td>@item.MaDvNavigation.TenDv</td>
+                    <td>@item.SoLuong</td>
+                    <td>@item.TongTien</td>
+                    <td>@item.NgayDatDichVu</td>
+                    <td>@item.NgayHd</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

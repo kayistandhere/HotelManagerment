@@ -1,0 +1,97 @@
+@model IEnumerable<Hotel.Models.DatPhongModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<body>
+    @section Title_Content{
+        <div class="titleCreate col d-flex">
+            <h3 class="fw-bolder m-0">Đặt Phòng</h3>
+        </div>
+
+    }
+    @section Itemt_Title{
+    }
+    <input type="text" name="check_nav" id="check_nav"
+        value="@ViewBag.check_nav" hidden>
+    <nav class="nav-dp">
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-link" href='@Url.Action("Index","DatPhong", new {check_nav = 1})'
+                type="button" data-id="1">Phòng
+                Đang Đặt</a>
+            <a class="nav-link" type="button" href='@Url.Action("Index","DatPhong", new {check_nav =
+                0})' data-id = "0">Phòng Đã
+                Thanh Toán</a>
+        </div>
+    </nav>
+    <div class="row">
+        <div class="col">
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-home"
+                    role="tabpanel" aria-labelledby="nav-home-tab">
+                    <table class="table table-bordered mt-2">
+                        <thead class="text-center align-middle">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Mã Đặt Phòng</th>
+                                <th scope="col">Số Phòng</th>
+                                <th scope="col">Loại Giường</th>
+                                <th scope="col">Thời Gian Đặt</th>
+                                <th scope="col">Thời Gian Hết</th>
+                                <th scope="col">Tổng Tiền</th>
+                                <th scope="col">Công Cụ</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center align-middle">
+                            @{
+                                int soTT = 1;
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <th scope="row">@(soTT++)</th>
+                                        <td>
+                                            @Html.ActionLink(@item.MaDp,
+                                    "ChiTietDichVuCuaDatPhong",
+                                    "DatDichVu",
+                                    new {@maDp = item.MaDp}, new {@class =
+                                    ""})
+                                        </td>
+                                        <td>@item.MaPNavigation.SoPhong</td>
+                                        @if (item.MaPNavigation.LoaiGiuong == true)
+                                        {
+                                            <td>Giường Đơn</td>
+                                        }
+                                        else
+                                        {
+                                            <td>Giường Đôi</td>
+                                        }
+                                        <td>@item.NgayBatDau.ToString("dd/MM/yyyy HH:mm")</td>
+                                        <td>@item.NgayKetThuc.ToString("dd/MM/yyyy HH:mm")</td>
+                                        <td>@String.Format( "{0:#,#}", item.TongTien) VNĐ</td>
+                                        <td>
+                                            @if (ViewBag.check_nav == 0)
+                                            {
+                                                @Html.ActionLink("Xem", "ThanhToanDatPhong", "DatPhong", new {@idDP = item.Id}, new {@class = "btn btn-outline-primary"})
+                                            }
+                                            else
+                                            {
+                                                @Html.ActionLink("Thanh Toán",
+                                    "ThanhToanDatPhong",
+                                    "DatPhong",
+                                    new {@idDP = item.Id}, new {@class =
+                                    "btn btn-outline-secondary mb-2"})
+                                                @Html.ActionLink("Thêm Dịch Vụ","Create", "DatDichVu", new
+                                    {@idDP = item.Id}, new {@class = "btn btn-outline-primary"})
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

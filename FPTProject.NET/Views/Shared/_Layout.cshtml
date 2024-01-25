@@ -1,0 +1,222 @@
+﻿@using Hotel.Base;
+
+@{
+    BaseClass bs = new BaseClass();
+    string tenDN = "";
+    int? phanQuyen = null;
+    string? ten = @Context.Request.Cookies["DangNhap"];
+    if (ten != null)
+    {
+        ten = bs.deCodeHash(ten);
+    }
+    string roleName = "";
+    if (ten != null && ten.Contains(";"))
+    {
+        tenDN = ten.Split(";")[0];
+        try
+        {
+            phanQuyen = Int32.Parse(ten.Split(";")[1]);
+            if (phanQuyen == 99)
+                roleName = "Admin";
+            else if (phanQuyen == 1)
+                roleName = "Quản Lý";
+            else if (phanQuyen == 0)
+                roleName = "Nhân viên";
+            else
+                roleName = "Không xác định";
+        }
+        catch (FormatException ex)
+        {
+            System.Console.WriteLine(ex.Message);
+        }
+    }
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Hotel</title>
+    <link rel="icon" type="image/png" sizes="16x16"
+        href="~/assets/images/favicon.png">
+    <!-- Custom CSS -->
+    <link href="~/assets/extra-libs/c3/c3.min.css" rel="stylesheet">
+    <link href="~/assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
+    <link href="~/assets/extra-libs/jvector/jquery-jvectormap-2.0.2.css"
+        rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="~/dist/css/style.min.css" rel="stylesheet">
+</head>
+<body>  
+    <form asp-action="Delete" method="POST">
+        <div id="danger-header-modal" class="modal fade" tabindex="-1" aria-labelledby="danger-header-modalLabel" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header modal-colored-header bg-danger">
+                        <h4 class="modal-title" id="danger-header-modalLabel">Modal Heading</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" name="Id" id="delete">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Đóng</button>
+                        <input class="btn btn-danger" type="submit" value="Xoá"></input>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+    </form>
+
+    <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
+        <header class="topbar" data-navbarbg="skin6">
+            <nav class="navbar top-navbar navbar-expand-lg navbar-light">
+                <div class="navbar-header" data-logobg="skin6">
+                    <a class="nav-toggler waves-effect waves-light d-block d-lg-none" href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
+                    <div class="navbar-brand">
+                        <!-- Logo icon -->
+                        @if (phanQuyen.Value == 99)
+                        {
+                            <a href='@Url.Action("Index","ThongKe")'>                             
+                                <img src="~/assets/images/freedashDark.svg" alt="" class="img-fluid">
+                            </a>
+                        }else{
+                            <a href='@Url.Action("Index","DatPhong")'>                             
+                                <img src="~/assets/images/freedashDark.svg" alt="" class="img-fluid">
+                            </a>
+                        }
+                    </div>
+                    <a class="topbartoggler d-block d-lg-none waves-effect waves-light" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i class="ti-more"></i></a>
+                </div>
+                <div class="navbar-collapse collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav float-left me-auto ms-3 ps-1">                     
+                    </ul>
+                    <ul class="navbar-nav float-end">
+                    @if(ten != null){
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img src="~/assets/images/users/profile-pic.jpg" alt="user" class="rounded-circle" width="40">
+                                <span class="ms-2 d-none d-lg-inline-block"><span>Hello,</span> <span class="text-dark">@tenDN</span> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down svg-icon"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-right user-dd animated flipInY">
+                                <a class="dropdown-item" href='@Url.Action("EditProfile", "TaiKhoan")'><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user svg-icon me-2 ms-1"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                                    My Profile</a>                                
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href='@Url.Action("DangXuat", "TaiKhoan")'><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-power svg-icon me-2 ms-1"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path><line x1="12" y1="2" x2="12" y2="12"></line></svg>Đăng Xuất
+                                </a>
+                            </div>
+                        </li>
+                    }else{
+                        @Html.ActionLink("Đăng Nhập","DangNhap","TaiKhoan",null,new {@class = "btn waves-effect waves-light btn-primary"})
+                    }
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <aside class="left-sidebar" data-sidebarbg="skin6">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar ps-container ps-theme-default ps-active-y" data-sidebarbg="skin6" data-ps-id="d63483ca-29a5-ea2d-7cf6-8d6a3a6ed537">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav" style="padding-top:0">
+                    <ul id="sidebarnav" class="in">
+                        @if (!string.IsNullOrEmpty(ten))
+                        {
+                            if (phanQuyen != null)
+                            {
+                                if (phanQuyen.Value == 99)
+                                {
+                                    <partial name="_PhongPartial"/>
+                                    <partial name="_DatPhongPartial"/>
+                                    <partial name="_KhachHangPartial"/>
+                                    <partial name="_NhanVienPartial"/>
+                                    <partial name="_DichVuPartial"/>
+                                    <partial name="_TacVuPhongPartial"/>
+                                    <partial name="_LuongNVPartial"/>
+                                    <partial name="_ThanhToanPartial"/>
+                                    <partial name="_ThongKePartial"/>
+                                    <partial name="_TaiKhoanPartial"/>
+                                }
+                                else if (phanQuyen.Value == 1)
+                                {
+                                    <partial name="_KhachHangPartial"/>
+                                    <partial name="_NhanVienPartial"/>
+                                    <partial name="_DatPhongPartial"/>
+                                    <partial name="_LuongNVPartial"/>
+                                    <partial name="_ThanhToanPartial"/>
+                                    <partial name="_ThongKePartial"/>
+                                    <partial name="_DichVuPartial"/>
+                                    <partial name="_TacVuPhongPartial"/>
+                                }
+                                else if (phanQuyen.Value == 0)
+                                {
+                                    <partial name="_DatPhongPartial"/>
+                                    <partial name="_PhongPartial"/>
+                                    <partial name="_TacVuPhongPartial"/>
+                                    <partial name="_DichVuPartial"/>
+                                    <partial name="_KhachHangPartial"/>
+                                    @* @Html.Partial("_KhachHangPartial") *@
+                                }
+                                else
+                                {
+                                    <ul class="list-unstyled ps-0">
+                                        <li>You don't have permision!</li>
+                                    </ul>
+                                }
+                            }                            
+                        }                                     
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; height: 511px; right: 3px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 259px;"></div></div></div>
+            <!-- End Sidebar scroll-->
+        </aside>
+        <div class="page-wrapper" style="display: block;">
+            <div class="page-breadcrumb">
+                <div class="row px-3">
+                    <div class="col-7  align-self-center">
+                        @await RenderSectionAsync("Title_Content", required: false)
+                    </div>
+                    <div class="col-5 align-self-center">
+                        <div style="float:right">
+                            @await RenderSectionAsync("Itemt_Title", required: false)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <main role="main" class="pb-3">
+                    @RenderBody()
+                </main>
+            </div>
+        </div>
+    </div>
+    <script src="~/assets/libs/jquery/dist/jquery.min.js"></script>
+    <script
+        src="~/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- apps -->
+    <!-- apps -->
+    <script src="~/dist/js/app-style-switcher.js"></script>
+    <script src="~/dist/js/feather.min.js"></script>
+    <script
+        src="~/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="~/dist/js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="~/dist/js/custom.min.js"></script>
+    <!--This page JavaScript -->
+    <script src="~/assets/extra-libs/c3/d3.min.js"></script>
+    <script src="~/assets/extra-libs/c3/c3.min.js"></script>
+    <script src="~/assets/libs/chartist/dist/chartist.min.js"></script>
+    <script
+        src="~/assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
+    <script
+        src="~/assets/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js"></script>
+    <script
+        src="~/assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="~/dist/js/pages/dashboards/dashboard1.min.js"></script>
+    <script src="~/js/site.js"></script>
+    @await Component.InvokeAsync("Notyf") 
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+
+

@@ -1,0 +1,84 @@
+@model IEnumerable<Hotel.Models.NhanVienModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+@section Title_Content{
+    <h2>Danh Sách Nhân Viên</h2>
+
+    <p>
+        <a asp-action="Create">Tạo Nhân Viên</a>
+    </p>
+}
+@section Itemt_Title{
+}
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+                    Mã Nhân Viên
+                </th>
+                <th>
+                    Tên Nhân Viên
+                </th>
+                <th>
+                    Hình Ảnh
+                </th>
+                <th>
+                    Số Điện Thoại
+                </th>
+                <th>
+                    CMND
+                </th>
+                <th>
+                    Địa Chỉ
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Tài Khoảng
+                </th>
+                <th>Công Cụ</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaNv)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenNv)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HinhAnh)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SoDt)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CCccd)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DiaChi)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserNameNavigation.UserName)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

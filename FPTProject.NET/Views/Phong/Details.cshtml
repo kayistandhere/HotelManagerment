@@ -1,0 +1,88 @@
+@model Hotel.Models.PhongModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Phong</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MaP)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MaP)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SoPhong)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SoPhong)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.HinhAnh)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.HinhAnh)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TrangThaiPhong)
+        </dt>
+        @if (Model.TrangThaiPhong == 1)
+        {
+            <dd class="col-sm-10">
+                Đang Rảnh
+            </dd>
+        }
+        else if (Model.TrangThaiPhong == 2)
+        {
+            <dd class="col-sm-10">
+                Đang Bận
+            </dd>
+        }
+        else
+        {
+            <dd class="col-sm-10">
+                Đã Đặt
+            </dd>
+        }
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MaLpNavigation)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MaLpNavigation.TenLp)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MaTvpNavigation)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MaTvpNavigation.TenTvp)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MoTa)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MoTa)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LoaiGiuong)
+        </dt>
+        <dd class="col-sm-10">
+            @if (Convert.ToBoolean(Model.LoaiGiuong) == true)
+            {
+                <p>Giường Đơn</p>
+            }
+            else
+            {
+                <p>Giường Đôi</p>
+            }
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

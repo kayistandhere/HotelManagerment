@@ -1,0 +1,55 @@
+@model Hotel.Models.DatDichVuModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="">
+    <h3 class="my-2">Tạo Dịch Vụ Mới</h3>
+    <form asp-action="Create">
+        <div class="row">
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-body m-2">
+                        <div class="row mb-3">
+                            <label asp-for="MaDdv" class="form-label"></label>
+                            <input asp-for="MaDdv" value='@ViewData["MaDdv"]' class="form-control"
+                                readonly>
+                            <span asp-validation-for="MaDdv" class="text-danger"></span>
+                        </div>                        
+                        <div class="row mb-3">
+                            Chọn Dịch Vụ
+                            <select asp-for="MaDv" asp-items="@ViewBag.MaDv" class="form-select"></select>
+                        </div>
+                        <div class="row mb-3">
+                            <label asp-for="SoLuong" class="form-label"></label>
+                            <input asp-for="SoLuong" class="form-control">
+                            <span asp-validation-for="SoLuong" class="text-danger"></span>
+                        </div>
+                        <div class="row mb-3">
+                            <label asp-for="NgayDatDichVu" class="form-label"></label>
+                            <input asp-for="NgayDatDichVu" class="form-control">
+                            <span asp-validation-for="NgayDatDichVu" class="text-danger"></span>
+                        </div>
+                        <div class="row mb-3">
+                            <label asp-for="MaDp" class="form-label"></label>
+                            <input asp-for="MaDp" value="@ViewBag.MaDp" class="form-control" readonly>
+                        </div>
+                        <div class="row mb-3">
+                            Số Phòng
+                            <input value="@ViewBag.SoPhong" class="form-control" readonly name="soP">
+                        </div>
+                        <input type="text" name="MaNv" value="@ViewBag.MaNv" hidden>
+                        <div class="row mb-3">
+                            <button type="submit" class="btn btn-danger col me-2">Tạo Mới</button>
+                            @Html.ActionLink("Quay Lại", "Index", "DatPhong", null, new {@class = "btn btn-primary col"})
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+
+            </div>
+        </div>
+    </form>
+</div>

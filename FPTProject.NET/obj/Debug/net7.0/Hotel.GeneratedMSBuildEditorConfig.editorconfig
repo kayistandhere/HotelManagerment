@@ -1,0 +1,321 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Hotel
+build_property.RootNamespace = Hotel
+build_property.ProjectDir = d:\FPT SOFTWARE\Learn\FPTProject.NET\
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = true
+build_property.MSBuildProjectDirectory = d:\FPT SOFTWARE\Learn\FPTProject.NET
+build_property._RazorSourceGeneratorDebug = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/DatDichVu/ChiTietDichVuCuaDatPhong.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0RGljaFZ1XENoaVRpZXREaWNoVnVDdWFEYXRQaG9uZy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/DatDichVu/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0RGljaFZ1XENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/DatDichVu/HoaDonDatDichVu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0RGljaFZ1XEhvYURvbkRhdERpY2hWdS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/DatDichVu/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0RGljaFZ1XEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/DatPhong/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0UGhvbmdcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/DatPhong/DanhSachPhongDaDat.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0UGhvbmdcRGFuaFNhY2hQaG9uZ0RhRGF0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/DatPhong/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0UGhvbmdcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/DatPhong/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0UGhvbmdcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/DatPhong/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0UGhvbmdcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/DatPhong/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0UGhvbmdcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/DatPhong/ThanhToanDatPhong.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0UGhvbmdcVGhhbmhUb2FuRGF0UGhvbmcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/DichVu/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGljaFZ1XENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/DichVu/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGljaFZ1XERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/DichVu/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGljaFZ1XERldGFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/DichVu/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGljaFZ1XERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/DichVu/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGljaFZ1XEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/DichVu/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGljaFZ1XEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/HoaDonDatPhong/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9hRG9uRGF0UGhvbmdcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/HoaDonDatPhong/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9hRG9uRGF0UGhvbmdcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/HoaDonDatPhong/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9hRG9uRGF0UGhvbmdcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/KhachHang/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2hhY2hIYW5nXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/KhachHang/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2hhY2hIYW5nXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/KhachHang/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2hhY2hIYW5nXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/LoaiPhong/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9haVBob25nXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/LoaiPhong/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9haVBob25nXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/LoaiPhong/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9haVBob25nXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/LoaiPhong/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9haVBob25nXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/LoaiPhong/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9haVBob25nXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/NhanVien/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmhhblZpZW5cQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/NhanVien/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmhhblZpZW5cRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/NhanVien/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmhhblZpZW5cRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/NhanVien/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmhhblZpZW5cRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/NhanVien/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmhhblZpZW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/Phong/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGhvbmdcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/Phong/DanhSachPhongDatPhong.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGhvbmdcRGFuaFNhY2hQaG9uZ0RhdFBob25nLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/Phong/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGhvbmdcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/Phong/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGhvbmdcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/Phong/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGhvbmdcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/Phong/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGhvbmdcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/Role/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZVxEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/Role/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/Shared/_DatPhongPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9EYXRQaG9uZ1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/Shared/_DichVuPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9EaWNoVnVQYXJ0aWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/Shared/_KhachHangPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9LaGFjaEhhbmdQYXJ0aWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/Shared/_LuongNVPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MdW9uZ05WUGFydGlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/Shared/_NewLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9OZXdMYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/Shared/_NhanVienPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9OaGFuVmllblBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/Shared/_PhongPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9QaG9uZ1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/Shared/_TacVuPhongPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9UYWNWdVBob25nUGFydGlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/Shared/_TaiKhoanPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9UYWlLaG9hblBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/Shared/_ThanhToanPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9UaGFuaFRvYW5QYXJ0aWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/Shared/_ThongKePartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9UaG9uZ0tlUGFydGlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/TacVuPhong/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFjVnVQaG9uZ1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/TacVuPhong/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFjVnVQaG9uZ1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/TacVuPhong/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFjVnVQaG9uZ1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/TacVuPhong/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFjVnVQaG9uZ1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/TacVuPhong/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFjVnVQaG9uZ1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/TaiKhoan/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFpS2hvYW5cQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/TaiKhoan/DangNhap.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFpS2hvYW5cRGFuZ05oYXAuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/TaiKhoan/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFpS2hvYW5cRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/TaiKhoan/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFpS2hvYW5cRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/TaiKhoan/DoiMatKhau.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFpS2hvYW5cRG9pTWF0S2hhdS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/TaiKhoan/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFpS2hvYW5cRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/TaiKhoan/EditProfile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFpS2hvYW5cRWRpdFByb2ZpbGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/TaiKhoan/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFpS2hvYW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/TaiKhoan/QuenMatKhau.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFpS2hvYW5cUXVlbk1hdEtoYXUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/TaiKhoan/ThongKe.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFpS2hvYW5cVGhvbmdLZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/TaiKhoan/XacThucMail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFpS2hvYW5cWGFjVGh1Y01haWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/ThongKe/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGhvbmdLZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/FPT SOFTWARE/Learn/FPTProject.NET/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

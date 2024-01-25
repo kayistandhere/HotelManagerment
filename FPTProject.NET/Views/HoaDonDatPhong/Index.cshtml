@@ -1,0 +1,118 @@
+@model PaginatedList<Hotel.Models.HoaDonDatPhongModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@section Title_Content{
+    <div class="titleCreate col d-flex">
+        <h3 class="page-title text-truncate text-dark font-weight-medium mb-0 me-4" style="line-height:34px;">Danh Sách Hóa
+            Đơn Đặt Phòng</h3>
+    </div>
+}
+@section Itemt_Title{
+    <form asp-action="Index" method="get" id="form-search">
+        <div class="customize-input d-flex">
+            <input placeholder="Tìm kiếm ..." type="text" name="SearchString" value='@ViewData["CurrentFilter"]'
+                id="searchInput" class="form-control custom-shadow custom-radius border-1 border-light bg-white me-2" />
+            <div class="d-flex align-items-center">
+                <a asp-action="Index" class="back-search" class="btn waves-effect waves-light btn-primary">Back
+                </a>
+            </div>
+        </div>
+    </form>
+}
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().MaHddp)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().NgayHd)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().MaDpNavigation)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().MaNvNavigation)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MaHddp)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NgayHd)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MaDpNavigation.MaDp)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MaNvNavigation.MaNv)
+                        </td>
+                        <td>
+                            @* <a class="btn btn-primary p-3" asp-action="Details" asp-route-id="@item.Id">Chi Tiết</a> *@
+                            @Html.ActionLink("Chi Tiết", "ThanhToanDatPhong", "DatPhong", new {@idDP = item.MaDpNavigation.Id}, new {@class = "btn btn-outline-primary"})
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <br />
+            <ul>
+                @{
+                    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+                    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+                }
+                <li class="d-inline">
+                    <a asp-action="Index" asp-route-sortOrder='@ViewData["CurrentSort"]'
+                        asp-route-pageNumber="@(Model.PageIndex - 1)"
+                        asp-route-currentFilter='@ViewData["CurrentFilter"]' class="btn btn-default @prevDisabled">
+                        Previous
+                    </a>
+                </li>
+                @for (int i = 1; i <= Model.TotalPages; i++)
+                {
+                    if (Model.PageIndex == i)
+                    {
+                        <li class="d-inline">
+                            <a asp-action="Index" asp-route-sortOrder='@ViewData["CurrentSort"]' asp-route-pageNumber="@(i)"
+                        asp-route-currentFilter='@ViewData["CurrentFilter"]' class="btn btn-primary @nextDisabled">
+                                @i
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="d-inline">
+                            <a asp-action="Index" asp-route-sortOrder='@ViewData["CurrentSort"]' asp-route-pageNumber="@(i)"
+                        asp-route-currentFilter='@ViewData["CurrentFilter"]' class="btn btn-default @nextDisabled">
+                                @i
+                            </a>
+                        </li>
+                    }
+                }
+                <li class="d-inline">
+                    <a asp-action="Index" asp-route-sortOrder='@ViewData["CurrentSort"]'
+                        asp-route-pageNumber="@(Model.PageIndex + 1)"
+                        asp-route-currentFilter='@ViewData["CurrentFilter"]' class="btn btn-default @nextDisabled">
+                        Next
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

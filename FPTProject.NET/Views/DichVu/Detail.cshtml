@@ -1,0 +1,43 @@
+@model Hotel.Models.DichVuModel
+
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<h2>Xem Chi Tiết Dịch Vụ</h2>
+
+<div>
+    <div class="row">
+        <div class="col-4">
+            <div class="card">
+                <div class="card-body m-2">
+                    <div class="row mb-3">
+                        <label asp-for="MaDv" class="form-label"></label>
+                        <input asp-for="MaDv" class="form-control"
+                            readonly>
+                    </div>
+                    <div class="row mb-3">
+                        <label asp-for="TenDv" class="form-label"></label>
+                        <input asp-for="TenDv" class="form-control" readonly>
+                    </div>
+                    <div class="row mb-3">
+                        <label asp-for="DonGia" class="form-label"></label>
+                        <input asp-for="DonGia" class="form-control" readonly>
+                    </div>
+                    <div class="row mb-3">
+                        <label asp-for="SoLuong" class="form-label"></label>
+                        <input asp-for="SoLuong" class="form-control" readonly>
+                    </div>
+                    <div class="row mb-3">
+                        <label asp-for="HinhAnh" class="form-label"></label>
+                        <input asp-for="HinhAnh" class="form-control" readonly>
+                    </div>
+                    <div class="row mb-3">
+                        <a asp-action="Index" class="btn btn-primary">Quay Lại</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

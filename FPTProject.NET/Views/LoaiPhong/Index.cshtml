@@ -1,0 +1,53 @@
+@model IEnumerable<Hotel.Models.LoaiPhongModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+@section Title_Content{
+    <div class="titleCreate col d-flex">
+        <h3 class="page-title text-truncate text-dark font-weight-medium mb-0 me-4"
+            style="line-height:34px;">Danh Sách Phòng</h3>
+        <a asp-action="Create"
+            class="btn waves-effect waves-light btn-secondary mb-0"
+            style="height:2.5em ; width:10rem">Tạo Mới</a>
+    </div>
+}
+@section Itemt_Title{
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MaLp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TenLp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DonGia)
+            </th>
+            <th>Công Cụ</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaLp)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenLp)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DonGia)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
